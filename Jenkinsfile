@@ -27,13 +27,13 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarServer') {
-                    sh 'mvn sonar:sonar'
-                }
-            }
+      stage('SonarQube Analysis') {
+    steps {
+        withSonarQubeEnv('SonarServer') {
+            sh 'mvn sonar:sonar -Dsonar.java.binaries=target/classes'
         }
+    }
+}
 
     }
 }
