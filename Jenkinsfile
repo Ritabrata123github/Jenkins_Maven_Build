@@ -11,7 +11,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-             git branch: 'main',url: 'https://github.com/Ritabrata123github/Jenkins_Maven_Build'
+                git branch: 'main', url: 'https://github.com/Ritabrata123github/Jenkins_Maven_Build'
             }
         }
 
@@ -19,8 +19,6 @@ pipeline {
             steps {
                 sh 'mvn clean compile'
             }
-         
-         
         }
 
         stage('Run JUnit Tests') {
@@ -29,13 +27,13 @@ pipeline {
             }
         }
 
-       stage('SonarQube Analysis') {
-          steps {
-          withSonarQubeEnv('SonarServer') {
-            sh 'mvn clean verify sonar:sonar'
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarServer') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
         }
-    }
-}
 
     }
 }
